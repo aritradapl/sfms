@@ -70,7 +70,7 @@
 
                                             <td class="text-center py-0 align-middle">
                                                 {{-- Add action buttons here --}}
-                                                <a href="{{ route('fees.delete', $payments->id) }}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a>
+                                                {{-- <a href="{{ route('fees.delete', $payments->id) }}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
