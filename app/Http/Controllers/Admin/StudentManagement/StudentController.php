@@ -40,7 +40,7 @@ class StudentController extends Controller
         $request->validate([
             'name'=>'required',
             'gender'=>'required',
-            'phone'=>'required|digits_between:10,12',
+            'phone'=>'required|digits_between:10,10',
             'address'=>'required',
             'dept_id'=>'required',
         ],
@@ -48,10 +48,9 @@ class StudentController extends Controller
             'name.required'=>'Name is Required',
             'gender.required'=>'Gender is Required',
             'phone.required'=>'Mobile is Required',
-            'phone.digits_between'=>'Mobile Number Should be Within 10 to 12 digits',
+            'phone.digits_between'=>'Please Enter 10 Digit Mobile Number',
             'address.required'=>'Address is Required',
             'dept_id.required'=>'Department is Required',
-            'year.required'=>'Session is Required',
         ]);
         $user= UserMaster::create([
             'admin_id' => Auth::user()->id,
@@ -59,8 +58,7 @@ class StudentController extends Controller
             'gender' => $request->input('gender'),
             'phone' => $request->input('phone'),
             'address' => $request->input('address'),
-            'dept_id'=> $request->input('dept_id'),
-            'year' => $request->input('year')
+            'dept_id'=> $request->input('dept_id')
         ]);
         //dd($request->all());
         return redirect()->route('student.list')->with('status','Added Successfully');
@@ -97,8 +95,7 @@ class StudentController extends Controller
             'gender' => $request->input('gender'),
             'phone' => $request->input('phone'),
             'address' => $request->input('address'),
-            'dept_id'=> $request->input('dept_id'),
-            'year' => $request->input('year')
+            'dept_id'=> $request->input('dept_id')
         ]);
         return redirect()->route('student.list')->with('status','Updated Successfully');
     }

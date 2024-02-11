@@ -16,7 +16,7 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <div class="card">a
+            <div class="card">
                 <div class="card-header">
                     <a href="{{route('add.department')}}" class="btn btn-primary float-right" data-toggle="tooltip" data-placement="top" title="Add"><i class="fa fa-plus"></i> Add Department</a></h3>
                 </div>
