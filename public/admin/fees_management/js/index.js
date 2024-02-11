@@ -83,15 +83,15 @@ document.addEventListener('DOMContentLoaded', () =>
         return is_valid;
     }
 });
-document.getElementById('student_id').addEventListener('change', function () {
-    document.getElementById("year-div").classList.remove("d-none");
-});
-document.getElementById('year_id').addEventListener('change', function () {
-    document.getElementById("month-div").classList.remove("d-none");
-});
-document.getElementById('month_id').addEventListener('change', function () {
-    document.getElementById("amount-div").classList.remove("d-none");
-});
+// document.getElementById('student_id').addEventListener('change', function () {
+//     document.getElementById("year-div").classList.remove("d-none");
+// });
+// document.getElementById('year_id').addEventListener('change', function () {
+//     document.getElementById("month-div").classList.remove("d-none");
+// });
+// document.getElementById('month_id').addEventListener('change', function () {
+//     document.getElementById("amount-div").classList.remove("d-none");
+// });
 document.getElementById('amount').addEventListener("input", function() {
     if (document.getElementById('amount').value.trim() !== "") {
         document.getElementById('submit').disabled = false;

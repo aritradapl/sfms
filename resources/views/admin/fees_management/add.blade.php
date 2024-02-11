@@ -26,7 +26,7 @@
                 @enderror
             </span>
         </div>
-        <div class="form-group d-none" id="year-div">
+        <div class="form-group" id="year-div">
             <label for="year_id">Year</label>
             <select class="form-control" id="year_id" name="year_id">
                 <option value="" selected disabled>Select Year</option>
@@ -42,7 +42,7 @@
                 @enderror
             </span>
         </div>
-        <div class="form-group d-none" id="month-div">
+        <div class="form-group" id="month-div">
             <label for="month_id">Month</label>
             <select class="form-control" id="month_id" name="month_id">
                 <option value="" selected disabled>Select Month</option>
@@ -58,7 +58,7 @@
                 @enderror
             </span>
         </div>
-        <div class="form-group d-none" id="amount-div">
+        <div class="form-group" id="amount-div">
             <label for="amount">Amount</label>
             <input type="text" class="form-control" id="amount" name="amount" placeholder="Example:500" value="{{old('amount')}}">
             <span class="text-danger">
