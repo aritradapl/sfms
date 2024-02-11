@@ -36,45 +36,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @if($students->count()>0)
-                            @foreach ($students as $student)
-                                @if($student->amounts->count()>0)
-                                    @foreach ($student->amounts as $key=>$val)
-                                        @if ($val->student_id == $student->id)
+                            @if ($students->count() > 0)
+                                @foreach ($students as $student)
+                                    {{-- Group payments by year for the current student --}}
+                                    @php
+                                        $paymentsByYear = $student->amounts->groupBy('year_id');
+                                    @endphp
+
+                                    {{-- Loop through each year --}}
+                                    @foreach ($paymentsByYear as $yearId => $payments)
+                                        {{-- Find the year object --}}
+                                        @php
+                                            $year = $years->where('id', $yearId)->first();
+                                        @endphp
+
+                                        {{-- Start a new row for each year --}}
                                         <tr>
-                                            <td>
-                                                {{ $student->name }}
-                                            </td>
+                                            <td>{{ $student->name }}</td>
                                             <td>{{ $student->department->department_name }}</td>
-                                            <td>
-                                                @if($years->count()>0)
-                                                    @foreach ($years as $year)
-                                                        @if($year->id == $val->year_id)
-                                                            {{ $year->year }}
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                            @if($months->count()>0)
-                                                @foreach ($months as $month)
-                                                    <td>
-                                                        @if ($month->id == $val->month_id)
-                                                            Paid
-                                                        @endif
-                                                    </td>
-                                                @endforeach
-                                            @endif
+                                            <td>{{ $year->year }}</td>
+
+                                            {{-- Loop through each month --}}
+                                            @foreach ($months as $month)
+                                                <td>
+                                                    {{-- Check if the student has a payment for this month and year --}}
+                                                    @if ($payments->contains('month_id', $month->id))
+                                                        Paid
+                                                    @else
+                                                        <!-- Display empty cell if payment not found -->
+                                                    @endif
+                                                </td>
+                                            @endforeach
+
                                             <td class="text-center py-0 align-middle">
-                                                {{-- <a href="{{route('fees.show',$student->id)}}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="View" ><i class="fas fa-eye"></i></a> --}}
-                                                {{-- <a href="" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-edit"></i></a> --}}
-                                                <a href="{{route('fees.delete',$val->id)}}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete" ><i class="fas fa-trash"></i></a>
+                                                {{-- Add action buttons here --}}
+                                                <a href="{{ route('fees.delete', $student->id) }}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                        @endif
                                     @endforeach
-                                @endif
-                            @endforeach
-                        @endif
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
